@@ -1,0 +1,116 @@
+{
+  "contracts": [
+    {
+      "name": "HashStorageFactory",
+      "address": "0xCb2A277998026a86a47B8B8D3135beB174b1788e",
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "tenantId",
+              "type": "string"
+            }
+          ],
+          "name": "createStorage",
+          "outputs": [
+            {
+              "internalType": "contract HashStorage",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "",
+              "type": "string"
+            }
+          ],
+          "name": "deployedContracts",
+          "outputs": [
+            {
+              "internalType": "contract HashStorage",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        }
+      ]
+    },
+    {
+      "name": "HashStorage",
+      "abi": [
+        {
+          "inputs": [],
+          "name": "nextIndex",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "retrieve",
+          "outputs": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "unixTimestamp",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "string",
+                  "name": "storedHash",
+                  "type": "string"
+                }
+              ],
+              "internalType": "struct Hash",
+              "name": "",
+              "type": "tuple"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "unixTimestamp",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "string",
+                  "name": "storedHash",
+                  "type": "string"
+                }
+              ],
+              "internalType": "struct Hash",
+              "name": "hashToStore",
+              "type": "tuple"
+            }
+          ],
+          "name": "store",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        }
+      ]
+    }
+  ]
+}

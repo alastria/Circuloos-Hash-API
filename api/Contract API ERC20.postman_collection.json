@@ -1,0 +1,278 @@
+{
+	"info": {
+		"_postman_id": "c61d6046-3a9d-4086-bb9f-95d529f14766",
+		"name": "Contract API ERC20",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33270317"
+	},
+	"item": [
+		{
+			"name": "IERC20",
+			"item": [
+				{
+					"name": "Get the total supply of the token",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/totalSupply",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"totalSupply"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get the balance of a specific address",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"args\": [\n        \"0x0000000000000000000000000000000000000000\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/balanceOf",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"balanceOf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get the allowance of an address for another address",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"args\": [\n        \"0x0000000000000000000000000000000000000000\",\n        \"0x0000000000000000000000000000000000000000\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/allowance",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"allowance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transfer token from a specific wallet to another wallet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"args\": [\n        \"0x0000000000000000000000000000000000000000\",\n        \"0x0000000000000000000000000000000000000000\",\n        0\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/transferFrom",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"transferFrom"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "IERC20Metadata Methods",
+			"item": [
+				{
+					"name": "Get the token's name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/name",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"name"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get the token's symbol",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/symbol",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"symbol"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get the token's decimals",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/decimals",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"decimals"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ERC20MintableAndBurnable Methods",
+			"item": [
+				{
+					"name": "Mint a new token to a specific wallet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"args\": [\n        \"0x0000000000000000000000000000000000000000\",\n        0\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/mintTo",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"mintTo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Burn an amount of tokens from a wallet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"args\": [\n        \"0x0000000000000000000000000000000000000000\",\n        0\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/burnFrom",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"burnFrom"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{api-key}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "X-API-Key",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "api-key",
+			"value": "EXAMPLE-KEY-CHANGE-IT-IN-CURRENT-VALUE",
+			"type": "string"
+		}
+	]
+}
