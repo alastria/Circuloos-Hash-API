@@ -1,8 +1,8 @@
 # API Endpoints
 
-[Create new hashes for a set of tenants](#create-new-hashes-for-a-set-of-tenants)
-[Get the latest hash stored for a tenant](#get-the-latest-hash-stored-for-a-tenant)
-[Get the stored hash count for a tenant](#get-the-stored-hash-count-for-a-tenant)
+[Create new hashes for a set of tenants](#create-new-hashes-for-a-set-of-tenants)  
+[Get the latest hash stored for a tenant](#get-the-latest-hash-stored-for-a-tenant)  
+[Get the stored hash count for a tenant](#get-the-stored-hash-count-for-a-tenant)  
 [Get a specific hash by index for a tenant](#get-a-specific-hash-by-index-for-a-tenant)
 
 ## Create new hashes for a set of tenants
