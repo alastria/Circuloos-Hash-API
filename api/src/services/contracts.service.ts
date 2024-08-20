@@ -8,6 +8,7 @@ import {
   FunctionFragment,
   Interface,
   Overrides,
+  ParamType,
   Signer,
   Typed,
   ethers,
@@ -62,7 +63,7 @@ export async function getContractMethod(
     const emptyOptions: Typed = Typed.from('overrides', {});
     const matchingFragment: FunctionFragment = matchingFuncs.getFragment(...args, emptyOptions);
     const fragmentName = matchingFragment.name;
-    const fragmentParams = matchingFragment.inputs.map((input) => input.type).join(',');
+    const fragmentParams = getTypesRecursive(matchingFragment.inputs);
     return contractInstance.getFunction(`${fragmentName}(${fragmentParams})`);
   } catch (exception: any) {
     logger.error(exception);
@@ -73,6 +74,19 @@ export async function getContractMethod(
       getContractMethods(contractInstance.interface)
     );
   }
+}
+
+function getTypesRecursive(inputs: readonly ParamType[]): string {
+  // tuple(uint256,string,tuple(uint256,string))
+  return inputs.map((input) => {
+    let type = input.type;
+
+    if (input.components !== null && input.components.length > 0) {
+      type += `(${getTypesRecursive(input.components)})`;
+    }
+    
+    return type;
+  }).join(',');
 }
 
 export function getContractMethods(contractInterface: Interface): string[] {

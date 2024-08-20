@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "4b61c18e-0b2b-4da0-9e7a-03bf7750079f",
+		"name": "Hash API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37072370"
+	},
+	"item": [
+		{
+			"name": "Create hashes for tenants as listed",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"dateTime\": \"2024-07-10T23:59:59.999999\",\n    \"orion@public.attributes\": \"8f0aeb2f86e3da8210cc2471e3ed3151c6972bd829029b407cca253cae4bf7df\",\n    \"orion@public.entities\": \"e03c92b1bff307c23d67017428e69cdf09854df578b271479e11a9807c8d0246\",\n    \"orion_circuloos_demo@public.attributes\": \"2d57b6ad076fbc35d04e25e5493fc1f5559f75e05af3f712abe22948c9307281\",\n    \"orion_circuloos_demo@public.entities\": \"9c88317839e609305f73b101b465d98e6dbf437e0062c1f18dc3ae3bdb16aa04\",\n    \"orion_demo_smart_contact@public.attributes\": \"87faa0f82a1c7e513aa53b03dde18394bd2a7452717f1fbee1828d01f0d762c6\",\n    \"orion_demo_smart_contact@public.entities\": \"dc7a00e5869b9654ba70b37abdf63dad9ba097126ee062d8b87efd8f075b0860\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/createHashes",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"createHashes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get latest hash for a tenant",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/getHash/{{tenant-id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"getHash",
+						"{{tenant-id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get hash by index for a tenant",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/getHash/{{tenant-id}}/0",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"getHash",
+						"{{tenant-id}}",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get hash count for a tenant",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/countHashes/{{tenant-id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"countHashes",
+						"{{tenant-id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{api-key}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "X-API-Key",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "api-key",
+			"value": "EXAMPLE-API-KEY",
+			"type": "string"
+		},
+		{
+			"key": "tenant-id",
+			"value": "orion_circuloos_demo@public.attributes",
+			"type": "string"
+		}
+	]
+}

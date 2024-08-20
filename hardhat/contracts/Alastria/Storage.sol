@@ -1,15 +1,13 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.24;
 
-import "./structs/Hash.sol";
-
 struct Hash {
   uint256 unixTimestamp;
   string storedHash;
 }
 
 contract HashStorage {
-    mapping (uint256 => Hash) private storedHashes;
+    mapping (uint256 => Hash) public storedHashes;
     uint256 public nextIndex;
 
     function store(Hash calldata hashToStore) public {

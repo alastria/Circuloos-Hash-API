@@ -2,7 +2,7 @@ SERVICE_NAME: ERC20 Contract API
 PORT: 3000
 CONTRACTS_FILE: ./contracts.json
 CONTRACT:
-  NAME: ERC20MintableAndBurnable
+  NAME: HashStorageFactory
 LOG_LEVELS:
   LOG_LEVEL_SYSTEM: debug
   LOG_LEVEL_FILE: info

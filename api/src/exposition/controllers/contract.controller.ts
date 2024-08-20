@@ -10,8 +10,8 @@ let config: Config;
 let logger: Logger;
 
 export async function callContractMethodController(req: Request): Promise<AppResult> {
-  const contractName: string = config.CONTRACT.NAME;
-  const contractAddress: string = config.CONTRACT.ADDRESS;
+  const contractName: string = req.params.contract;
+  const contractAddress: string = req.params.address;
   const methodName: string = req.params.method;
   const args: any[] = req.body.args || [];
   const options: Overrides = req.body.options || {};
@@ -28,8 +28,8 @@ export async function callContractMethodController(req: Request): Promise<AppRes
 }
 
 export async function executeContractMethodController(req: Request): Promise<AppResult> {
-  const contractName: string = config.CONTRACT.NAME;
-  const contractAddress: string = config.CONTRACT.ADDRESS;
+  const contractName: string = req.params.contract;
+  const contractAddress: string = req.params.address;
   const methodName: string = req.params.method;
   const args: any[] = req.body.args || [];
   const options: Overrides = req.body.options || {};

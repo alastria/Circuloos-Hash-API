@@ -6,6 +6,7 @@ import { initConfig } from "./bootstrap/config.bootstrap";
 import { startLogger } from "./bootstrap/log.bootstrap";
 
 import initContractController from "./exposition/controllers/contract.controller";
+import initFactoryController from "./exposition/controllers/factory.controller";
 import api from "./exposition/api/api";
 
 (BigInt.prototype as any).toJSON = function () {
@@ -30,6 +31,7 @@ async function startApp() {
 
     logger.info('INITIALIZING CONTROLLERS');
     initContractController(logger, config);
+    initFactoryController(logger, config);
 
     logger.info(`INITIALIZING SERVICES`);
     initContractsService(logger, contracts, config);
