@@ -29,13 +29,13 @@ export default class Logger {
     if (!logLevel) {
       logLevel = this.logLevel;
     } else {
-      logLevel = this.logLevel;
+      this.logLevel = logLevel;
     }
 
     if (!logFileLevel) {
       logFileLevel = this.logFileLevel;
     } else {
-      logFileLevel = this.logFileLevel;
+      this.logFileLevel = logFileLevel;
     }
 
     log4js.configure({
