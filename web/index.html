@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <script src="./index.js"></script>
+    <link rel="stylesheet" href="index.css">
+  </head>
+
+  <body>
+    <form class="form" id="form">
+      <div class="date-input">
+        <div class="form-format">
+          <p>Date of creation:</p>
+          <input type="date" required/>
+        </div>
+      </div>
+
+      <div class="select-input">
+        <div class="form-format">
+          <p>Tenant:</p>
+          <select required>
+            <option>
+              orion
+            </option>
+            <option>
+              orion_circuloos_demo
+            </option>
+            <option>
+              orion_demo_smart_contact
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="submit-button">
+        <div class="form-format">
+          <button type="submit">Find Hash</button>
+        </div>
+      </div>
+    </form>
+
+    <div>
+      <p>JSON Output:</p>
+      <textarea class="output" id="output" readonly autocomplete="off"></textarea>
+    </div>
+  </body>
+</html>
