@@ -51,37 +51,19 @@
 			"response": []
 		},
 		{
-			"name": "Get hash by index for a tenant",
+			"name": "Get hash by unix timestamp for a tenant",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{host}}/getHash/{{tenant-id}}/0",
+					"raw": "{{host}}/getHash/{{tenant-id}}/1720569600000",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
 						"getHash",
 						"{{tenant-id}}",
-						"0"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get hash count for a tenant",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{host}}/countHashes/{{tenant-id}}",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"countHashes",
-						"{{tenant-id}}"
+						"1720569600000"
 					]
 				}
 			},

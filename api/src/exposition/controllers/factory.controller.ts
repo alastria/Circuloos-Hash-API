@@ -20,11 +20,12 @@ export async function createHashesController(req: Request): Promise<AppResult> {
   const deployedContractsMethod: string = "deployedContracts";
   const tenantContractName: string = "HashStorage";
   const tenantStoreMethod: string = "store";
-
   const data = req.body;
-  const date = data.dateTime || new Date().toISOString();
+  const date = data.dateTime ? new Date(data.dateTime) : new Date();
+  const unixTimestamp = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
   const result: any = {
-    dateTime: date,
+    dateTime: data.dateTime,
+    timestamp: unixTimestamp,
     addresses: {},
     hashes: {}
   };
@@ -50,7 +51,7 @@ export async function createHashesController(req: Request): Promise<AppResult> {
     
     if (address != ZeroAddress) {
       logger.debug("Calling contract to store.");
-      await executeContractMethod(tenantContractName, address, tenantStoreMethod, [{unixTimestamp: new Date(date).getTime(),storedHash: value}], {});
+      await executeContractMethod(tenantContractName, address, tenantStoreMethod, [{unixTimestamp: unixTimestamp, storedHash: value}], {});
       result.hashes[key] = value;
     }
 
@@ -91,9 +92,9 @@ export async function getHashController(req: Request): Promise<AppResult> {
   }
 }
 
-export async function getHashByIndexController(req: Request): Promise<AppResult> {
+export async function getHashByUnixTimestampController(req: Request): Promise<AppResult> {
   const tenantId: string = req.params.tenantId;
-  const index: string = req.params.index;
+  const unixTimestamp: string = req.params.unixTimestamp;
   const contractName: string = config.CONTRACT.NAME;
   const contractAddress: string = config.CONTRACT.ADDRESS;
   const methodName: string = "deployedContracts";
@@ -106,37 +107,20 @@ export async function getHashByIndexController(req: Request): Promise<AppResult>
     throw new TenantContractNotFoundException(tenantId);
   }
 
-  const result = await callContractMethod(tenantContractName, address, tenantContractMethod, [index], {});
+  let date;
+  if (Number.isNaN(unixTimestamp)) {
+    date = new Date(unixTimestamp);
+  } else {
+    date = new Date(Number(unixTimestamp));
+  }
+
+  const unixTrimmed = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
+  const result = await callContractMethod(tenantContractName, address, tenantContractMethod, [unixTrimmed], {});
 
   return {
     statusCode: 200,
     body: {
-      message: `Retrieved the hash at index ${index} for the tenant ${tenantId}.`,
-      result
-    }
-  }
-}
-
-export async function getHashCountController(req: Request): Promise<AppResult> {
-  const tenantId: string = req.params.tenantId;
-  const contractName: string = config.CONTRACT.NAME;
-  const contractAddress: string = config.CONTRACT.ADDRESS;
-  const methodName: string = "deployedContracts";
-  const tenantContractName: string = "HashStorage";
-  const tenantContractMethod: string = "nextIndex";
-
-  let address = await callContractMethod(contractName, contractAddress, methodName, [tenantId], {});
-
-  if (address == ZeroAddress) {
-    throw new TenantContractNotFoundException(tenantId);
-  }
-
-  const result = await callContractMethod(tenantContractName, address, tenantContractMethod, [], {});
-
-  return {
-    statusCode: 200,
-    body: {
-      message: `Retrieved the hash count for the tenant ${tenantId}.`,
+      message: `Retrieved the hash with timestamp ${unixTimestamp} for the tenant ${tenantId}.`,
       result
     }
   }

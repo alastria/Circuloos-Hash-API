@@ -8,16 +8,16 @@ struct Hash {
 
 contract HashStorage {
     mapping (uint256 => Hash) public storedHashes;
-    uint256 public nextIndex;
+    uint256 latestTimestamp;
 
     function store(Hash calldata hashToStore) public {
-        storedHashes[nextIndex] = hashToStore;
-        nextIndex++;
+        storedHashes[hashToStore.unixTimestamp] = hashToStore;
+        latestTimestamp = hashToStore.unixTimestamp;
     }
 
     function retrieve() public view returns (Hash memory) {
-        require(nextIndex > 0, "No stored hashes");
-        return storedHashes[nextIndex - 1];
+        require(latestTimestamp > 0, "No stored hashes");
+        return storedHashes[latestTimestamp];
     }
 }
 

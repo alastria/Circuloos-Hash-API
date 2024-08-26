@@ -3,7 +3,7 @@
 [Create new hashes for a set of tenants](#create-new-hashes-for-a-set-of-tenants)  
 [Get the latest hash stored for a tenant](#get-the-latest-hash-stored-for-a-tenant)  
 [Get the stored hash count for a tenant](#get-the-stored-hash-count-for-a-tenant)  
-[Get a specific hash by index for a tenant](#get-a-specific-hash-by-index-for-a-tenant)
+[Get a specific hash by unix timestamp for a tenant](#get-a-specific-hash-by-unix-timestamp-for-a-tenant)
 
 ## Create new hashes for a set of tenants
 Creates new hashes for all the tenants passed on the request body so they can be stored in blockchain.
@@ -70,36 +70,16 @@ None
 }
 ```
 
-## Get the stored hash count for a tenant
-Retrieves the number of stored hashes for a specific tenant
+## Get a specific hash by unix timestamp for a tenant
+Retrieves a specific hash by the unix timestamp in all the stored hashes for a specific tenant
 ### Request Endpoint
-GET `/countHashes/:tenantId`
+GET `/getHash/:tenantId/:unixTimestamp`
 ### Request Body
 None
 ### Success Result Example
 ```json
 {
-    "message": "Retrieved the hash count for the tenant orion_circuloos_demo@public.attributes.", // A message explaining execution result
-    "result": "1" // The count of hashes stored for this tenant
-}
-```
-### Error Example
-```json
-{
-    "message": "Tenant exampleTenant@exampleTable does not have a registered contract."
-}
-```
-
-## Get a specific hash by index for a tenant
-Retrieves a specific hash by the index in all the stored hashes for a specific tenant
-### Request Endpoint
-GET `/getHash/:tenantId/:index`
-### Request Body
-None
-### Success Result Example
-```json
-{
-    "message": "Retrieved the hash at index 0 for the tenant orion_circuloos_demo@public.attributes.", // A message explaining execution result
+    "message": "Retrieved the hash with timestamp 1720648799999 for the tenant orion_circuloos_demo@public.attributes.", // A message explaining execution result
     "result": {
         "unixTimestamp": "1720648799999", // The unix timestamp for the stored hash
         "storedHash": "2d57b6ad076fbc35d04e25e5493fc1f5559f75e05af3f712abe22948c9307281" // The stored hash

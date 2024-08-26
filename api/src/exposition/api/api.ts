@@ -1,14 +1,19 @@
 import express, { Express, Request, Response } from "express";
 
+import cors from "cors";
+
 import { callContractMethodController, executeContractMethodController } from "../controllers/contract.controller";
 import handleControllerCall from "../controllers";
 
 import Logger from "../../helpers/logger.helper";
 import Config from "../../types/Config.type";
 import { apiKeyMiddleware } from "../middleware/apiKey.middleware";
-import { createHashesController, getHashByIndexController, getHashController, getHashCountController } from "../controllers/factory.controller";
+import { createHashesController, getHashByUnixTimestampController, getHashController } from "../controllers/factory.controller";
 
 const app: Express = express();
+app.use(cors({
+  origin: '*'
+}))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // app.use(apiKeyMiddleware);
@@ -35,25 +40,15 @@ app.get("/getHash/:tenantId", async (req: Request, res: Response) => {
   await handleControllerCall(req, res, logger, getHashController);
 });
 
-app.get("/countHashes/:tenantId", async (req: Request, res: Response) => {
+app.get("/getHash/:tenantId/:unixTimestamp", async (req: Request, res: Response) => {
   const tenantId: string = req.params.tenantId;
-  const requestMade: string = `GET /getHash/${tenantId}/count`;
+  const unixTimestamp: string = req.params.unixTimestamp;
+  const requestMade: string = `GET /getHash/${tenantId}/${unixTimestamp}`;
 
   logger.info(requestMade);
   logger.debug(`${requestMade} ${JSON.stringify(req.headers)} ${JSON.stringify(req.query)} ${JSON.stringify(req.body)}`);
 
-  await handleControllerCall(req, res, logger, getHashCountController);
-});
-
-app.get("/getHash/:tenantId/:index", async (req: Request, res: Response) => {
-  const tenantId: string = req.params.tenantId;
-  const index: string = req.params.index;
-  const requestMade: string = `GET /getHash/${tenantId}/${index}`;
-
-  logger.info(requestMade);
-  logger.debug(`${requestMade} ${JSON.stringify(req.headers)} ${JSON.stringify(req.query)} ${JSON.stringify(req.body)}`);
-
-  await handleControllerCall(req, res, logger, getHashByIndexController);
+  await handleControllerCall(req, res, logger, getHashByUnixTimestampController);
 });
 
 app.get("/:contract/:address/:method", async (req: Request, res: Response) => {
