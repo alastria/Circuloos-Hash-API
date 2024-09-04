@@ -24,7 +24,7 @@ async function submitRequest(event) {
     const result = {};
   
     for (let tenantId of tenantIds) {
-      const response = await fetch(`http://localhost:3000/getHash/${tenantId}/${unixTimestamp}`);
+      const response = await fetch(`/getHash/${tenantId}/${unixTimestamp}`);
       const body = await response.json();
   
       if (tenantIds.indexOf(tenantId) === 0) {

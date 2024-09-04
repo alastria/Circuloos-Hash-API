@@ -7,6 +7,11 @@ const apiKeys: { [key: string]: boolean } = {
 
 // Super basic API Key authentication middleware.
 export function apiKeyMiddleware(req: Request, res: Response, next: NextFunction) {
+  if (req.method === "GET") {
+    next();
+    return;
+  }
+
   const apiKey: string | string[] | undefined = req.headers['x-api-key'];
 
   if (!apiKey || Array.isArray(apiKey) || !apiKeys[apiKey]) {

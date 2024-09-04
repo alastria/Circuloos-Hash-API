@@ -16,7 +16,8 @@ app.use(cors({
 }))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(apiKeyMiddleware);
+app.use(apiKeyMiddleware);
+app.use(express.static('web'));
 
 let logger: Logger;
 let config: Config;
