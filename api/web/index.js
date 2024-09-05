@@ -42,7 +42,25 @@ async function submitRequest(event) {
   }
 }
 
+function copyOutputToClipboard() {
+  const output = document.getElementById("output");
+
+  if (!output.value)
+    return;
+
+  try {
+    JSON.parse(output.value)
+  } catch {
+    return;
+  }
+
+  navigator.clipboard.writeText(output.value);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById("form");
   form.addEventListener("submit", submitRequest);
+
+  const copyButton = document.getElementById("copy");
+  copyButton.addEventListener("click", copyOutputToClipboard);
 }, false);

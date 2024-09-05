@@ -1,18 +1,7 @@
 .form {
   display: flex;
+  justify-content: space-between;
   flex-direction: row;
-}
-
-.date-input {
-  padding-left: 0%;
-}
-
-.select-input {
-  padding-left: 5%;
-}
-
-.submit-button {
-  padding-left: 5%;
 }
 
 .form-format {
@@ -25,11 +14,30 @@
 }
 
 .output {
-  width: 99vw;
-  height: 90vh;
+  width: 99%;
+  height: 25%;
   resize: none;
 }
 
+.alastria-logo {
+  justify-content: center;
+}
+
+.copy-button {
+  margin-top: 1%;
+}
+
 p {
+  color: white;
   margin: 5px 0 5px 0;
+}
+
+img {
+  max-width: 20vw;
+  max-height: 5vh;
+}
+
+body {
+  padding: 2.5%;
+  background-color: #010326;
 }
