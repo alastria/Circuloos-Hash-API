@@ -26,6 +26,14 @@ Once you have started your project, you can then call any of the documented endp
 
 The documentation for all of the endpoints in this project is included in the `/api/docs` folder.
 
+## API Web
+
+There's a web access provided with the api with statics that allow retrieving information from the blockchain in a simple user interface.  
+You can access the web locally through `http://localhost:3000`.  
+You will have to chose a date of the timestamp of when the hashes were created, as well as a tenant.  
+Once you have that you can simply press the `Find Hash` buttton and you will get a JSON back in the same format as the input JSON, but with the hashes.  
+If the hashes show up empty, and the date is 1970-1-1, then there was no data for that date and tenant.
+
 # Using or updating contracts from hardhat
 
 The hardhat folder has the solidity contracts, as well as a fixed version (v5.0.2) of the OpenZeppelin contracts from their GitHub repository.  
