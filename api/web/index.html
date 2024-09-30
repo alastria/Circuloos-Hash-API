@@ -1,52 +1,69 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
   <head>
-    <script src="./index.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Find Hash</title>
+    <script src="./index.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
+    <style>
+      .form-container {
+        background-color: #343a40; 
+        padding: 2rem;
+        border-radius: 0.5rem;
+      }
+      .output {
+        background-color: #495057;
+        color: #f8f9fa; 
+      }
+      .copy-button {
+        margin-top: 1rem;
+      }
+    </style>
   </head>
 
-  <body>
-    <form class="form" id="form">
-      <div class="date-input">
-        <div class="form-format">
-          <p>Date of creation:</p>
-          <input type="date" required/>
+  <body class="bg-dark text-light">
+    <div class="container mt-5">
+      <div class="form-container">
+        <form class="form" id="form">
+          <div class="mb-3">
+            <label for="creationDate" class="form-label">Date of creation:</label>
+            <input type="date" id="creationDate" class="form-control bg-secondary text-light border-0" required/>
+          </div>
+
+          <div class="mb-3">
+            <label for="tenantSelect" class="form-label">Tenant:</label>
+            <select id="tenantSelect" class="form-select bg-secondary text-light border-0" required>
+              <option value="" disabled selected>Select Tenant</option>
+              <option value="orion">orion</option>
+              <option value="orion_circuloos_demo">orion_circuloos_demo</option>
+              <option value="orion_demo_smart_contact">orion_demo_smart_contact</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <button type="submit" class="btn btn-primary w-100">Find Hash</button>
+          </div>
+
+          <div class="mb-3 text-center">
+            <img src="/alastria_web.png" alt="Alastria Logo" class="img-fluid" style="max-width: 200px;">
+          </div>
+        </form>
+
+        <div class="mt-4">
+          <p>JSON Output:</p>
+          <textarea class="form-control output" id="output" rows="5" readonly autocomplete="off"></textarea>
+        </div>
+
+        <div class="mt-2">
+          <button class="btn btn-secondary w-100 copy-button" id="copy">Copy JSON to clipboard</button>
         </div>
       </div>
-
-      <div class="select-input">
-        <div class="form-format">
-          <p>Tenant:</p>
-          <select required>
-            <option>
-              orion
-            </option>
-            <option>
-              orion_circuloos_demo
-            </option>
-            <option>
-              orion_demo_smart_contact
-            </option>
-          </select>
-        </div>
-      </div>
-
-      <div class="submit-button">
-        <div class="form-format">
-          <button type="submit">Find Hash</button>
-        </div>
-      </div>
-
-      <div class="alastria-logo">
-        <div class="form-format">
-          <img src="/alastria_web.png">
-        </div>
-      </div>
-    </form>
-
-    <div>
-      <p>JSON Output:</p>
-      <textarea class="output" id="output" readonly autocomplete="off"></textarea>
-      <button class="copy-button" id="copy">Copy JSON to clipboard</button>
     </div>
+
+    <!-- Enlaces a Bootstrap JS y dependencias -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-qbY+2N1aNJjsGxkS4YhZq8G7gBfxaF0AwSJEfWXH1uOyL1psUGr27LWzEU1U1jq+" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-DBjhmceBxWjnOZMYmQjT1rMZorxv2YhiGicBQb1A6Z4w/IisAqpzktOzgakDftO3" crossorigin="anonymous"></script>
   </body>
 </html>
